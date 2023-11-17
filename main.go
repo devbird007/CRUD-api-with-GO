@@ -83,6 +83,7 @@ func updateMovie(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	// create router
 	r := mux.NewRouter()
 
 	movies = append(movies, Movie{ID: "1", Isbn: "438227", Title: "Movie One", Director: &Director{Firstname: "John", Lastname: "Doe"}})
@@ -93,6 +94,7 @@ func main() {
 	r.HandleFunc("/movies/{id}", updateMovie).Methods("PUT")
 	r.HandleFunc("/movies/{id}", deleteMovie).Methods("DELETE")
 
+	// start server
 	fmt.Printf("Starting server at port 8000\n")
 
 	log.Fatal(http.ListenAndServe(":8000", r))
